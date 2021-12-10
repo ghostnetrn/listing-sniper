@@ -20,9 +20,9 @@ Join our community: https://t.me/drfurrbots
 
 - RENAME the "env.example" file to ".env" and edit it.
 ```
-# Your APP ID From my.telegram.org
+# Your APP ID From my.telegram.org *OPTIONAL IF USING PRECOMPILED VERSION*
 APP_ID=
-# Your APP HASH From my.telegram.org
+# Your APP HASH From my.telegram.org *OPTIONAL IF USING PRECOMPILED VERSION*
 APP_HASH=
 # Your wallet address
 RECIPIENT=
