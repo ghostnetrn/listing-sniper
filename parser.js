@@ -2,6 +2,7 @@ const validateInput = (text) => {
     if (!text.includes('Insider')) {
         return false;
     }
+    return true
     // try {
     //     const liquidity = text.match(/[0-9]+\.[0-9]*/);
     //     const liqlimit = 125
