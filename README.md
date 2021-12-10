@@ -55,3 +55,15 @@ Open the command prompt or terminal (depending on your OS) and change to the dir
 The first time you run the bot, you will be prompted to login with a telegram account.
 
 - On macOS and linux, you may have to make the bot executable `chmod +x listingsniper`
+
+## Results
+
+![wmj3aOvD](https://user-images.githubusercontent.com/94490774/145612452-8677f80a-7a64-43a7-bdab-f2963b11e116.png)
+![DXIhckJJ](https://user-images.githubusercontent.com/94490774/145612467-cc5a57c2-52ec-42c9-9587-4c57b35f46f6.png)
+![valk](https://user-images.githubusercontent.com/94490774/145612475-b4bda5d7-9800-4564-b66d-f9fcdedec0a2.png)
+![luto3](https://user-images.githubusercontent.com/94490774/145612481-96621851-0291-4d2c-a233-0540990f8cf9.png)
+![dcip3](https://user-images.githubusercontent.com/94490774/145612487-ba2a4eb7-93e4-47f5-bf23-3b1334d1f5e0.png)
+![moonx2](https://user-images.githubusercontent.com/94490774/145612499-9e8e70c7-d37a-4e3e-8803-6a12084639ec.png)
+![grm](https://user-images.githubusercontent.com/94490774/145612514-d9e2b02d-cc89-463f-a51e-62fce222bfd0.png)
+![ronin](https://user-images.githubusercontent.com/94490774/145612522-30083831-ab44-4351-82fe-79eddd2c6f33.png)
+![fdm](https://user-images.githubusercontent.com/94490774/145612531-72bbe990-8f45-4a81-8610-672c4e873530.png)
