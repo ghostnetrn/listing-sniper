@@ -18,61 +18,51 @@ if (result.error) {
 
 if (!process.env.PRIVATE_KEY) {
   throw (
-      "The private key was not found in .env. Enter the private key in .env."
+    "The private key was not found in .env. Enter the private key in .env."
   );
 }
 
 if (!process.env.RECIPIENT) {
   throw (
-      "The public address (RECIPIENT) was not found in .env. Enter your public address in .env."
+    "The public address (RECIPIENT) was not found in .env. Enter your public address in .env."
   );
 }
 
-function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    let whitelistalways = process.env.WHITELIST_ALWAYS || "false"
-    let whitelistonly = process.env.WHITELIST_ONLY || "false"
-    let manualonly = process.env.MANUAL_ONLY || "false"
-    let readonly = process.env.READ_ONLY || "false"
-    let coinmarketcap = process.env.COINMARKETCAP || "false"
-    let coingecko = process.env.COINGECKO || "false"
+function run() {
+  let whitelistalways = process.env.WHITELIST_ALWAYS || "false"
+  let whitelistonly = process.env.WHITELIST_ONLY || "false"
+  let manualonly = process.env.MANUAL_ONLY || "false"
+  let readonly = process.env.READ_ONLY || "false"
+  let coinmarketcap = process.env.COINMARKETCAP || "false"
+  let coingecko = process.env.COINGECKO || "false"
 
-    if (body.isLicensed) {
+  console.log("")
+  if (whitelistalways === "true") {
+    console.log("Always buying whitelisted tokens.")
+    console.log("")
+  }
+  if (readonly === "true" || whitelistalways === "false" && coinmarketcap === "false" && coingecko === "false") {
+    console.log("Running in read-only mode.")
+    console.log("")
+    manualonly = "false"
+    whitelistonly = "false"
+  } else {
+    if (manualonly === "true") {
+      console.log("Running in manual buy mode.")
       console.log("")
-      if (whitelistalways === "true") {
-        console.log("Always buying whitelisted tokens.")
-        console.log("")
-      }
-      if (readonly === "true" || whitelistalways === "false" && coinmarketcap === "false" && coingecko === "false") {
-        console.log("Running in read-only mode.")
-        console.log("")
-        manualonly = "false"
-        whitelistonly = "false"
-      } else {
-        if (manualonly === "true") {
-          console.log("Running in manual buy mode.")
-          console.log("")
-          whitelistonly = "false"
-        } else {
-          if (whitelistonly === "true") {
-            console.log("Running in whitelist only mode.")
-            whitelisted = process.env.WHITELIST.split(',')
-            console.log("Whitelisted tokens: " + whitelisted)
-            console.log("")
-          }
-        }
-      }
-      main(readonly, whitelistonly, whitelistalways, manualonly);
-    } else {
-      console.log("Running in read-only mode.")
-      readonly = "true"
-      manualonly = "false"
       whitelistonly = "false"
-      console.log("")
-      main(readonly, whitelistonly, whitelistalways, manualonly);
+    } else {
+      if (whitelistonly === "true") {
+        console.log("Running in whitelist only mode.")
+        whitelisted = process.env.WHITELIST.split(',')
+        console.log("Whitelisted tokens: " + whitelisted)
+        console.log("")
+      }
     }
   }
+  main(readonly, whitelistonly, whitelistalways, manualonly);
 }
+
 
 const main = async (readonly, whitelistonly, whitelistalways, manualonly) => {
   let coinmarketcap = process.env.COINMARKETCAP || "false"
@@ -100,9 +90,11 @@ const main = async (readonly, whitelistonly, whitelistalways, manualonly) => {
   }
   console.log("")
   try {
+    const apiId = process.env.APP_ID || "1234"
+    const apiHash = process.env.APP_HASH || "1234"
     const client = new Client(tdlib, {
-      apiId: process.env.APP_ID,
-      apiHash: process.env.APP_HASH,
+      apiId: apiId,
+      apiHash: apiHash,
       verbosityLevel: 0,
     });
 
@@ -115,9 +107,12 @@ const main = async (readonly, whitelistonly, whitelistalways, manualonly) => {
         update.message.date >= STARTUP_TIME &&
         chats.includes(update.message.chat_id.toString())
       ) {
+        //console.log(chats.includes(update.message.chat_id.toString()))
         const chatid = update.message.chat_id.toString()
         const { message } = update;
+        //console.log(update)
         let token = await parseMessage(message);
+        //console.log(token)
         if (token) {
           //cmc
           if ((chatid === '-1001519789792') && coinmarketcap === 'true') {
@@ -161,3 +156,4 @@ const main = async (readonly, whitelistonly, whitelistalways, manualonly) => {
   }
 };
 
+run();
