@@ -1,10 +1,6 @@
 
 # CoinMarketCap and CoinGecko Listing Sniper Bot
 
-Join our community: https://t.me/drfurrbots
-
-### Donation Address: 0x352E51b176b156c276A8EB8f57c974E12c75106B
-
 ## Requirements
 * Telegram Account
 
